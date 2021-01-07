@@ -9,7 +9,8 @@ public class Mandelbrot {
     public static void main(String[] args) throws Exception {
         int width = 1000, height = 1000, max = 1000;
 
-        double xPos = 0.35, yPos = 0.095, zoom = 0.009;
+       // double xPos = 0.35, yPos = 0.095, zoom = 0.009;
+        double xPos = 0.0, yPos = 0.0, zoom = 3.0;
 
         BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
         int black = 0;
