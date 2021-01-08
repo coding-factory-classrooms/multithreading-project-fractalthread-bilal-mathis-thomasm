@@ -13,10 +13,10 @@
 <div id="content">
     <div class="control-header">
         <div class="zoom-control">
-            <a id="zoom-plus" class="zoom-btn">
+            <a onclick="move('z', -1)" id="zoom-plus" class="zoom-btn">
                 <i class="fas fa-plus"></i>
             </a>
-            <a id="zoom-minus" class="zoom-btn">
+            <a onclick="move('z', 1)" id="zoom-minus" class="zoom-btn">
                 <i class="fas fa-minus"></i>
             </a>
         </div>
@@ -26,27 +26,28 @@
         </div>
 
         <div class="move-control">
-            <a id="move-up" class="move-btn-y">
+            <a onclick="move('y', -1)" id="move-up" class="move-btn-y">
                 <i class="fas fa-caret-up"></i>
             </a>
             <div class="move-side">
-                <a id="move-left" class="move-btn-x">
+                <a onclick="move('x', -1)" id="move-left" class="move-btn-x">
                     <i class="fas fa-caret-left"></i>
                 </a>
                 <div class="move-spacing"></div>
-                <a id="move-right" class="move-btn-x">
+                <a onclick="move('x', 1)" id="move-right" class="move-btn-x">
                     <i class="fas fa-caret-right"></i>
                 </a>
             </div>
-            <a id="move-down" class="move-btn-y">
+            <a onclick="move('y', 1)" id="move-down" class="move-btn-y">
                 <i class="fas fa-caret-down"></i>
             </a>
         </div>
     </div>
 
-    <div class="img-main" style="background-image: url('/images/0.0/0.0/1.0')"></div>
+    <div id="fractal-img" class="img-main" style="background-image: url('/images/0.0/0.0/1.0')"></div>
 
 </div>
+<script src="/js/script.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" integrity="sha512-F5QTlBqZlvuBEs9LQPqc1iZv2UMxcVXezbHzomzS6Df4MZMClge/8+gXrKw2fl5ysdk4rWjR0vKS7NNkfymaBQ==" crossorigin="anonymous"></script>
 </body>
 
