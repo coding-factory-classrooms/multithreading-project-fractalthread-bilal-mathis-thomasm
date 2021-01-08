@@ -17,7 +17,7 @@ public class App {
     public static void main(String[] args) {
         initialize();
 
-        Mandelbrot mandelbrot = new Mandelbrot();
+        Multithreading multithreading = new Multithreading();
         HomeController homeController = new HomeController();
         FractalController fractalController = new FractalController();
 
@@ -38,7 +38,7 @@ public class App {
             int intWidth = (int)width;
             int intHeight = (int)height;
 
-            File file = Mandelbrot.getImageFrom(intWidth,intHeight, x, y, zoom);
+            File file = Multithreading.generateMandelbrot(intWidth,intHeight, x, y, zoom);
             res.raw().setContentType("image/jpeg");
 
             try (OutputStream out = res.raw().getOutputStream()) {

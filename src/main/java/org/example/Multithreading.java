@@ -1,5 +1,8 @@
 package org.example;
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -9,11 +12,12 @@ public class Multithreading {
     private static final int THREADS = 8;
 
     public static void main(String[] args) {
-        generateMandelbrot();
+
     }
-     public static void generateMandelbrot(){
+     public static File generateMandelbrot(int width, int height, double xPos, double yPos, double zoom) throws IOException {
+
          ExecutorService executorService = Executors.newFixedThreadPool(THREADS);
-         Mandelbrot task = new Mandelbrot(1000, 1000, 1000, 0.38, 0.38, 0.4);
+         Mandelbrot task = new Mandelbrot(width, height, 1000, xPos, yPos, zoom);
          Future<BufferedImage> future = executorService.submit(task);
          BufferedImage bufferedImage = null;
          try {
@@ -25,5 +29,8 @@ public class Multithreading {
          }
 
          System.out.println(bufferedImage);
+         File outputfile = new File("mandelbrot.png");
+         ImageIO.write(bufferedImage, "png", outputfile);
+         return outputfile;
      }
 }
