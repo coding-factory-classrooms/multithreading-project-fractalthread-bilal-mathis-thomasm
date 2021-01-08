@@ -11,11 +11,8 @@ public class Mandelbrot {
 
     }
 
-    public static File getImageFrom(double xPos, double yPos, double zoom) throws IOException {
-        int width = 1000, height = 1000, max = 1000;
-
-
-
+    public static File getImageFrom(int width, int height, double xPos, double yPos, double zoom) throws IOException {
+        int max = 5000;
         BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
         int black = 0;
         int[] colors = new int[max];
