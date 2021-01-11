@@ -8,7 +8,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-public class Multithreading {
+public class Multithreading{
     private static final int THREADS = 8;
 
     public static void main(String[] args) {
@@ -33,4 +33,6 @@ public class Multithreading {
          ImageIO.write(bufferedImage, "png", outputfile);
          return outputfile;
      }
+
+
 }
