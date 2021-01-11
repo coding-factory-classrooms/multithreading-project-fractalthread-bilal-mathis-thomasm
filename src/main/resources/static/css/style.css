@@ -4,12 +4,22 @@ body{
     margin: 0;
     padding: 0;
     overflow: hidden;
+    background-color: black;
+}
+
+#content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .control-header{
+    z-index: 999;
     position: absolute;
     width: 100%;
     height: auto;
+    top: 0;
     margin-top: 20px;
     display: flex;
     justify-content: space-between;
@@ -109,6 +119,7 @@ body{
     width: 100vw;
     background-repeat: no-repeat;
     background-size: cover;
+    z-index: 2;
 }
 
 .title{
@@ -120,4 +131,10 @@ body{
     padding: 0 20px;
     font-family: 'Ubuntu Mono', monospace;
     font-weight: bold;
+}
+
+.loading{
+    font-family: 'Ubuntu Mono', monospace;
+    color: white;
+    position: absolute;
 }
