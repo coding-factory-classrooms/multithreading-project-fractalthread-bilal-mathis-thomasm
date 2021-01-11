@@ -5,9 +5,11 @@ const allPos = {x:0,y:0,z:3}
 function move(axe, increment){
     increment *= (Math.log(2) * allPos.z) / step;
     allPos[axe] += increment;
-    updatePos();
+    updateImage();
 }
 
-function updatePos() {
-    fractalDiv.style["background-image"] = "url('/images/"+allPos.x+"/"+allPos.y+"/"+allPos.z+"')";
+function updateImage() {
+    var width = window.innerWidth;
+    var height = window.innerHeight;
+    fractalDiv.style["background-image"] = "url('/images/"+width+"/"+height+"/"+allPos.x+"/"+allPos.y+"/"+allPos.z+"')";
 }

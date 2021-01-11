@@ -21,7 +21,7 @@ public class App {
     public static void main(String[] args) {
         initialize();
 
-        Mandelbrot mandelbrot = new Mandelbrot();
+        Multithreading multithreading = new Multithreading();
         HomeController homeController = new HomeController();
         FractalController fractalController = new FractalController();
 
@@ -32,7 +32,9 @@ public class App {
             return Template.render("image.html", new HashMap<>());
         });
 
-        Spark.get("/images/:x/:y/:zoom", (req, res) -> {
+        Spark.get("/images/:width/:height/:x/:y/:zoom", (req, res) -> {
+            double width = Double.parseDouble(req.params(":width"));
+            double height = Double.parseDouble(req.params(":height"));
             double x = Double.parseDouble(req.params(":x"));
             double y = Double.parseDouble(req.params(":y"));
             double zoom = Double.parseDouble(req.params(":zoom"));
@@ -42,6 +44,7 @@ public class App {
                     ImageIO.write(ImageIO.read(App.cache.get(Key)), "png", out);
                 }
 
+
             }
             else{
                 File file = Mandelbrot.getImageFrom(x, y, zoom);
@@ -49,6 +52,16 @@ public class App {
                     ImageIO.write(ImageIO.read(file), "png", out);
                 }
                 App.cache.add(Key,file);
+
+            int intWidth = (int)width;
+            int intHeight = (int)height;
+
+            File file = Multithreading.generateMandelbrot(intWidth,intHeight, x, y, zoom);
+            res.raw().setContentType("image/jpeg");
+
+            try (OutputStream out = res.raw().getOutputStream()) {
+                ImageIO.write(ImageIO.read(file), "png", out);
+
             }
 
             return res;
