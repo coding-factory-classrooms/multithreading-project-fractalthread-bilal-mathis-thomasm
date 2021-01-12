@@ -11,7 +11,7 @@ function move(axe, increment){
 }
 
 function updateImage() {
-    var width = window.innerWidth;
-    var height = window.innerHeight;
-    fractalDiv.style["background-image"] = "url('/images/julia/"+width+"/"+height+"/"+allPos.x+"/"+allPos.y+"/"+allPos.z+"')";
+    let width = window.innerWidth, height = window.innerHeight;
+    let type = document.getElementById("slct").value;
+    fractalDiv.style["background-image"] = "url('/images/"+type+"/"+width+"/"+height+"/"+allPos.x+"/"+allPos.y+"/"+allPos.z+"')";
 }

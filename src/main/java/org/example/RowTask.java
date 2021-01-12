@@ -62,7 +62,7 @@ public class RowTask implements Runnable {
             case "julia":
                 //je suis vraiment désolé mais mon I9 meurt avec 5000 itérations
                 max = 300;
-
+                zoom = zoom-1;
                 double CX = -0.7, CY = 0.27015;
                 for (int row = startX; row < width; row++) {
                     for (int col = startY; col < height; col++) {
