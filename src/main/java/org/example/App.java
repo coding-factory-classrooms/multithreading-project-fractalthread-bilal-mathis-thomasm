@@ -43,6 +43,7 @@ public class App {
             String Key= String.format("%s_%f_%f_%f",typeFractal,x,y,zoom);
             Fractal fractal =  new Fractal(width, height, 1000, x, y, zoom, typeFractal);
 
+
             if (App.cache.containsKey(Key)){
                 try (OutputStream out = res.raw().getOutputStream()) {
                     ImageIO.write(App.cache.get(Key), "png", out);

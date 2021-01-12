@@ -7,7 +7,16 @@ updateImage()
 function move(axe, increment){
     increment *= (Math.log(2) * allPos.z) / step;
     allPos[axe] += increment;
-    updateImage();
+
+
+    if(allPos.x >= 1 && allPos.x < 2){
+    window.alert("Merci à l'equipe 2 !!!!");
+    }else{
+     updateImage();
+    }
+
+
+
 }
 
 function updateImage() {
@@ -15,3 +24,4 @@ function updateImage() {
     let type = document.getElementById("slct").value;
     fractalDiv.style["background-image"] = "url('/images/"+type+"/"+width+"/"+height+"/"+allPos.x+"/"+allPos.y+"/"+allPos.z+"')";
 }
+
