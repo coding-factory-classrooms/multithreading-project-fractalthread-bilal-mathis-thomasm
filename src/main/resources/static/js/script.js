@@ -13,5 +13,5 @@ function move(axe, increment){
 function updateImage() {
     var width = window.innerWidth;
     var height = window.innerHeight;
-    fractalDiv.style["background-image"] = "url('/images/"+width+"/"+height+"/"+allPos.x+"/"+allPos.y+"/"+allPos.z+"')";
+    fractalDiv.style["background-image"] = "url('/images/julia/"+width+"/"+height+"/"+allPos.x+"/"+allPos.y+"/"+allPos.z+"')";
 }

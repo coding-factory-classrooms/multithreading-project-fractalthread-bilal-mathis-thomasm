@@ -12,23 +12,24 @@ import java.util.List;
 import java.util.concurrent.*;
 import javax.imageio.ImageIO;
 
-public class Mandelbrot implements Callable<BufferedImage> {
+public class Fractal {
     int width, height, max;
     double xPos, yPos, zoom;
+    String typeFractal;
 
-    public Mandelbrot(int width, int height, int max, double xPos, double yPos, double zoom) {
+    public Fractal(int width, int height, int max, double xPos, double yPos, double zoom, String typeFractal) {
         this.width = width;
         this.height = height;
         this.max = max;
         this.xPos = xPos;
         this.yPos = yPos;
         this.zoom = zoom;
+        this.typeFractal = typeFractal;
     }
 
     int nbThread = Runtime.getRuntime().availableProcessors();
 
-    @Override
-    public BufferedImage call() {
+    public BufferedImage generateFractal() {
 
         BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
         int black = 0;
@@ -50,14 +51,14 @@ public class Mandelbrot implements Callable<BufferedImage> {
 
         for (int chunkX = 0; chunkX < height; chunkX += chunkSize) {
             for (int chunkY = 0; chunkY < width; chunkY += chunkSize) {
-                RowTask rowTask = new RowTask(width, height, max, xPos, yPos, zoom, image, colors, chunkSize, chunkX, chunkY);
+                RowTask rowTask = new RowTask(width, height, max, xPos, yPos, zoom, image, colors, chunkSize, chunkX, chunkY, typeFractal);
                 executorService.execute(rowTask);
             }
         }
 
         executorService.shutdown();
 
-        try{
+        try {
             executorService.awaitTermination(Long.MAX_VALUE, TimeUnit.MICROSECONDS);
         } catch (InterruptedException e) {
             e.printStackTrace();

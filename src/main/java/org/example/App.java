@@ -9,13 +9,15 @@ import org.example.utils.LRUCache;
 import spark.Spark;
 
 import javax.imageio.ImageIO;
+import javax.xml.stream.FactoryConfigurationError;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.OutputStream;
 import java.util.HashMap;
 
 public class App {
-    private static final LRUCache<String, File>cache=new LRUCache<>(500);
+    private static final LRUCache<String, BufferedImage>cache=new LRUCache<>(500);
 
     public static void main(String[] args) {
         initialize();
@@ -31,27 +33,27 @@ public class App {
             return Template.render("image.html", new HashMap<>());
         });
 
-        Spark.get("/images/:width/:height/:x/:y/:zoom", (req, res) -> {
-            double width = Double.parseDouble(req.params(":width"));
-            double height = Double.parseDouble(req.params(":height"));
+        Spark.get("/images/:type/:width/:height/:x/:y/:zoom", (req, res) -> {
+            String typeFractal = req.params(":type");
+            int width = Integer.parseInt(req.params(":width"));
+            int height = Integer.parseInt(req.params(":height"));
             double x = Double.parseDouble(req.params(":x"));
             double y = Double.parseDouble(req.params(":y"));
             double zoom = Double.parseDouble(req.params(":zoom"));
             String Key= String.format("%f_%f_%f",x,y,zoom);
+            Fractal fractal =  new Fractal(width, height, 1000, x, y, zoom, typeFractal);
+
             if (App.cache.containsKey(Key)){
                 try (OutputStream out = res.raw().getOutputStream()) {
-                    ImageIO.write(ImageIO.read(App.cache.get(Key)), "png", out);
+                    ImageIO.write(App.cache.get(Key), "png", out);
                 }
-
             }
             else{
-                int intWidth = (int)width;
-                int intHeight = (int)height;
-                File file = Multithreading.generateMandelbrot(intWidth,intHeight, x, y, zoom);
+                BufferedImage bufferedImage = fractal.generateFractal();
                 try (OutputStream out = res.raw().getOutputStream()) {
-                    ImageIO.write(ImageIO.read(file), "png", out);
+                    ImageIO.write(bufferedImage, "png", out);
                 }
-                App.cache.add(Key,file);
+                App.cache.add(Key,bufferedImage);
             }
             return res;
         });
