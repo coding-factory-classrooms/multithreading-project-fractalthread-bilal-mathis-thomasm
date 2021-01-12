@@ -40,7 +40,7 @@ public class App {
             double x = Double.parseDouble(req.params(":x"));
             double y = Double.parseDouble(req.params(":y"));
             double zoom = Double.parseDouble(req.params(":zoom"));
-            String Key= String.format("%f_%f_%f",x,y,zoom);
+            String Key= String.format("%s_%f_%f_%f",typeFractal,x,y,zoom);
             Fractal fractal =  new Fractal(width, height, 1000, x, y, zoom, typeFractal);
 
             if (App.cache.containsKey(Key)){
