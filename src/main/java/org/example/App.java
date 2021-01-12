@@ -10,18 +10,17 @@ import spark.Spark;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.OutputStream;
-import java.nio.file.Files;
 import java.util.HashMap;
 
 public class App {
     private static final LRUCache<String, File>cache=new LRUCache<>(500);
+
     public static void main(String[] args) {
         initialize();
 
-        Multithreading multithreading = new Multithreading();
+
         HomeController homeController = new HomeController();
         FractalController fractalController = new FractalController();
 
@@ -44,26 +43,16 @@ public class App {
                     ImageIO.write(ImageIO.read(App.cache.get(Key)), "png", out);
                 }
 
-
             }
             else{
-                File file = Mandelbrot.getImageFrom(x, y, zoom);
+                int intWidth = (int)width;
+                int intHeight = (int)height;
+                File file = Multithreading.generateMandelbrot(intWidth,intHeight, x, y, zoom);
                 try (OutputStream out = res.raw().getOutputStream()) {
                     ImageIO.write(ImageIO.read(file), "png", out);
                 }
                 App.cache.add(Key,file);
-
-            int intWidth = (int)width;
-            int intHeight = (int)height;
-
-            File file = Multithreading.generateMandelbrot(intWidth,intHeight, x, y, zoom);
-            res.raw().setContentType("image/jpeg");
-
-            try (OutputStream out = res.raw().getOutputStream()) {
-                ImageIO.write(ImageIO.read(file), "png", out);
-
             }
-
             return res;
         });
 
