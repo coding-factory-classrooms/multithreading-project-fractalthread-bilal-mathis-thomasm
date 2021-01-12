@@ -32,6 +32,7 @@ public class Mandelbrot implements Callable<BufferedImage> {
         int i = 0;
         long meanTime =0;
             long start = System.currentTimeMillis();
+
             for (int row = 0; row < height; row++) {
                 for (int col = 0; col < width; col++) {
                     double c_re = ((col - width/2)*zoom/width) + xPos;
@@ -60,4 +61,5 @@ public class Mandelbrot implements Callable<BufferedImage> {
         System.out.println("Generation time ="+ elapsed + " ms");
         return image;
     }
+
 }
