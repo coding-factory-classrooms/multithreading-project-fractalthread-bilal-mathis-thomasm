@@ -1,17 +1,7 @@
-#Temps de génération moyen pour chaque membre :
+##Temps de génération moyen pour chaque membre :
 
-###Sans multithreading
-
-Mathis : 1657 ms
-
-thomas : 3874 ms
-
-Bilal : 3028 ms
-
-###Avec le multithreading
-
-Mathis : 350 ms (-78.88 %)
-
-thomas : 722 ms (-81.36 %)
-
-Bilal : 573 ms (-81.08 %)
+**Members** | **CPU Model** | **without multithreading** | **with multithreading**
+---         | ---           | ---                        | ---
+*Mathis*    | i9-9900K      | `1657 ms`                  | `350 ms` *(-78.88 %)* 
+*Thomas*    | i7-2720QM     | `3874 ms`                  | `722 ms` *(-81.36 %)* 
+*Bilal*     | Ryzen 7 1700  | `3028 ms`                  | `573 ms` *(-81.08 %)* 
