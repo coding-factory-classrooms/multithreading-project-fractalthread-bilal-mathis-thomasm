@@ -19,6 +19,35 @@ function move(axe, increment){
 
 }
 
+document.onkeydown = checkKey;
+
+function checkKey(e) {
+
+    e = e || window.event;
+
+    if (e.keyCode == '38') {
+        move('y', -1)
+    }
+    else if (e.keyCode == '40') {
+        move('y', 1)
+    }
+    else if (e.keyCode == '37') {
+        move('x', -1)
+    }
+    else if (e.keyCode == '39') {
+        move('x', 1)
+    }
+
+}
+window.addEventListener("wheel", event => zoomScroll(event.deltaY));
+function zoomScroll(z) {
+    if(z > 0){
+        move('z', 1);
+    }else{
+        move('z', -1);
+    }
+}
+
 function updateImage() {
     let width = window.innerWidth, height = window.innerHeight;
     let type = document.getElementById("slct").value;
