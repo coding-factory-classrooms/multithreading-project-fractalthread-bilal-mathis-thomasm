@@ -1,22 +1,26 @@
 const fractalDiv = document.getElementById("fractal-img");
 const step = 5;
 const allPos = {x:0,y:0,z:3}
-
+let isEasterOn = false
+let audio = new Audio('https://timotei.co/music/circus.mp3');
 updateImage()
 
 function move(axe, increment){
     increment *= (Math.log(2) * allPos.z) / step;
     allPos[axe] += increment;
 
-
+    if(isEasterOn){
+        audio.pause();
+        audio.currentTime = 0;
+        updateImage();
+    }
     if(allPos.x >= 1 && allPos.x < 2){
-    window.alert("Merci à l'equipe 2 !!!!");
+        fractalDiv.style["background-image"] = "url('https://www.zupimages.net/up/21/02/6w8o.jpg')";
+        audio.play();
+        isEasterOn = true;
     }else{
      updateImage();
     }
-
-
-
 }
 
 document.onkeydown = checkKey;
