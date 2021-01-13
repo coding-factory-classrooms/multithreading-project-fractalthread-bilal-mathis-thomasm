@@ -53,7 +53,7 @@ public class RowTask implements Runnable {
                             x = x_new;
                             iteration++;
                         }
-                        if (iteration < max) image.setRGB(col, row, colors[iteration]);
+                        if (iteration < max) image.setRGB(col, row, colors[iteration]+255);
                         else image.setRGB(col, row, 0);
                     }
                 }

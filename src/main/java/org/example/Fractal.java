@@ -37,7 +37,7 @@ public class Fractal{
         int black = 0;
         int[] colors = new int[max];
         for (int i = 0; i < max; i++) {
-            colors[i] = Color.HSBtoRGB(i / 256f, 1, i / (i + 8f));
+            colors[i] = Color.HSBtoRGB(i / 256f, 1, i / (i + 2f));
         }
 
         List<RowTask> tasks = new ArrayList<>();
