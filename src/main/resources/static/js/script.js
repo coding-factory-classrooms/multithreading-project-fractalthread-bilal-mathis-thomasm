@@ -6,6 +6,9 @@ let audio = new Audio('https://timotei.co/music/circus.mp3');
 updateImage()
 
 function move(axe, increment){
+    if(document.getElementById("slct").value == "julia" && axe == 'z'){
+        increment = -(increment)
+    }
     increment *= (Math.log(2) * allPos.z) / step;
     allPos[axe] += increment;
 
@@ -14,6 +17,9 @@ function move(axe, increment){
         audio.currentTime = 0;
         updateImage();
     }
+
+
+
     if(allPos.x >= 1 && allPos.x < 2){
         fractalDiv.style["background-image"] = "url('https://www.zupimages.net/up/21/02/6w8o.jpg')";
         audio.play();
