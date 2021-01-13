@@ -41,7 +41,9 @@ public class App {
             double y = Double.parseDouble(req.params(":y"));
             double zoom = Double.parseDouble(req.params(":zoom"));
             String Key= String.format("%s_%f_%f_%f",typeFractal,x,y,zoom);
-            Fractal fractal =  new Fractal(width, height, 1000, x, y, zoom, typeFractal);
+            int nbThread = Runtime.getRuntime().availableProcessors();
+            ThreadPool threadPool = new ThreadPool(nbThread);
+            Fractal fractal =  new Fractal(width, height, 5000, x, y, zoom, typeFractal, threadPool);
 
 
             if (App.cache.containsKey(Key)){

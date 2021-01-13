@@ -12,12 +12,13 @@ import java.util.List;
 import java.util.concurrent.*;
 import javax.imageio.ImageIO;
 
-public class Fractal {
+public class Fractal{
     int width, height, max;
     double xPos, yPos, zoom;
     String typeFractal;
+    ExecutorService executorService;
 
-    public Fractal(int width, int height, int max, double xPos, double yPos, double zoom, String typeFractal) {
+    public Fractal(int width, int height, int max, double xPos, double yPos, double zoom, String typeFractal, ExecutorService executorService) {
         this.width = width;
         this.height = height;
         this.max = max;
@@ -25,6 +26,7 @@ public class Fractal {
         this.yPos = yPos;
         this.zoom = zoom;
         this.typeFractal = typeFractal;
+        this.executorService = executorService;
     }
 
     int nbThread = Runtime.getRuntime().availableProcessors();
